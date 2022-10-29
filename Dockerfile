@@ -1,20 +1,23 @@
-FROM node:16
+#Build node image from Node Docker Hub
+FROM node:alpine3.10
 
-# Create app directory
-WORKDIR /usr/src/app
+#Make app directory in container
+RUN mkdir /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+#Identify working directory
+WORKDIR /app
 
+#Copy package
+COPY package.json /app
+
+#Install rpm packages from package.json
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
 
-# Bundle app source
-COPY . .
+#Copy over app to app folder
+COPY . /app 
 
-EXPOSE 3000
+#Expose server at port ( accessible outside of container)
+EXPOSE 8080 
 
-CMD [ "node", "app.js" ]
+#Start app 
+CMD ["node", "app.js"]
