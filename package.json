@@ -5,7 +5,7 @@
   "author": "Arda Tunccekic",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "express": "^4.16.1"
